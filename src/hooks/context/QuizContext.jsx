@@ -77,6 +77,78 @@ export const QuizContextProvider = ({ children }) => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [showResultsButton, setShowResultsButton] = useState(true);
     
+  const initialAnsweredQuestions = questions.map((question) => ({
+    id: question.id,
+    answered: false,
+  }));
+
+  useEffect(() => {
+    setAnsweredQuestions(initialAnsweredQuestions);
+  }, []);
+
+
+  const handleShowAnswers = () => {
+    const questionWithId1 = questions.find((question) => question.id === 1);
+
+    if (questionWithId1) {
+      const index = questions.indexOf(questionWithId1);
+      setCurrentQuestion(index);
+    }
+
+    setShowAnswers(true);
+    setShowResultsButton(false);
+  };
+
+  const handleRestart = () => {
+    window.location.reload();
+  };
+
+  const handleNext = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  };
+
+  const handleAnswerClick = (answer) => {
+    if (!showAnswers) {
+      handleUserAnswer(answer);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const calculateScore = () => {
+    let correctAnswersCount = 0;
+    questions.forEach((question, index) => {
+      if (userAnswers[index] === question.correctAnswer) {
+        correctAnswersCount++;
+      }
+    });
+    return correctAnswersCount;
+  };
+
+  const handleUserAnswer = (answer) => {
+    const updatedAnswers = [...userAnswers];
+    updatedAnswers[currentQuestion] = answer;
+    setUserAnswers(updatedAnswers);
+  
+    const updatedAnsweredQuestions = [...answeredQuestions];
+    updatedAnsweredQuestions[currentQuestion].answered = true;
+    setAnsweredQuestions(updatedAnsweredQuestions);
+  
+    if (currentQuestion === questions.length - 1) {
+      setShowResultsButton(true);
+    }
+  };
+
+  const isAllQuestionsAnswered = answeredQuestions.every(
+    (question) => question.answered
+  );
+
     const contextValues = {
        
       };
