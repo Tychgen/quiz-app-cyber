@@ -1,0 +1,15 @@
+.correct {
+    background-color: #aafca2;
+    color: #006400; 
+  }
+  
+  .incorrect {
+    background-color: #fcaaaa; 
+    color: #ff0000;
+  }
+  
+  .show-answer {
+    border: 2px solid #000;
+  }
+
+  
