@@ -1,8 +1,11 @@
+import Quiz from "./Quiz";
+import { QuizContextProvider } from "../hooks/context/QuizContext";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <QuizContextProvider>
+     <Quiz/>
+    </QuizContextProvider>
   );
 }
 
