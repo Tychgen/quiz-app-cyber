@@ -150,7 +150,20 @@ export const QuizContextProvider = ({ children }) => {
   );
 
     const contextValues = {
-       
+        currentQuestion,
+        userAnswers,
+        answeredQuestions,
+        showAnswers,
+        showResultsButton,
+        handleShowAnswers,
+        handleNext,
+        handleBack,
+        handleUserAnswer,
+        isAllQuestionsAnswered,
+        questions,
+        handleRestart,
+        calculateScore,
+        handleAnswerClick
       };
     
       return (
