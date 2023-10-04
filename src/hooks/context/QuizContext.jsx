@@ -71,6 +71,12 @@ export const questions = [
 
 
 export const QuizContextProvider = ({ children }) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [answeredQuestions, setAnsweredQuestions] =useState([]);
+  const [showAnswers, setShowAnswers] = useState(false);
+  const [showResultsButton, setShowResultsButton] = useState(true);
+    
     const contextValues = {
        
       };
